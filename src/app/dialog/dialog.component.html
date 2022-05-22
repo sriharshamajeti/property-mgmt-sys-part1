@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Add Property</h2>
+<div mat-dialog-content>
+    <form [formGroup]="propertyForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Property Name</mat-label>
+            <input formControlName="propertyName" matInput placeholder="Name">
+        </mat-form-field>
+            <mat-form-field appearance="outline">
+            <mat-label>Property Description</mat-label>
+            <textarea formControlName="propertyDesc" matInput></textarea>
+        </mat-form-field>
+            <mat-form-field appearance="outline">
+            <mat-label>Property Size</mat-label>
+            <input formControlName="propertySize" matInput type="number" placeholder="Size in sq.ft.">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn">Cancel</button>
+    <button mat-raised-button style="margin-left: 8px;" color="primary" (click)="addProperty()">Save</button>
+</div>
