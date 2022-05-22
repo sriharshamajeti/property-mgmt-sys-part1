@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog',
@@ -9,8 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class DialogComponent implements OnInit {
 
   propertyForm !: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
-
+  constructor(
+    private formBuilder: FormBuilder,
+    private dailogRef : MatDialogRef<DialogComponent>) { }
+  dataAdded : any;
   ngOnInit(): void {
     this.propertyForm = this.formBuilder.group({
       propertyName : ['', Validators.required],
@@ -21,7 +24,10 @@ export class DialogComponent implements OnInit {
   }
 
   addProperty() {
-    console.log(this.propertyForm.value);
+    if(this.propertyForm.valid) {
+      this.dataAdded = this.propertyForm.value;
+      this.dailogRef.close(this.dataAdded);
+    }
   }
 
 }
